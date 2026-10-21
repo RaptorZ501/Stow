@@ -1,0 +1,205 @@
+
+                        body {
+                            font-family: 'Roboto', sans-serif;
+                            background-color: var(--fond);
+                            color: #f3f4f6;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+                            height: 100vh;
+                            margin: 0;
+                        }
+
+                        :root {
+                            --orange: #f97316;
+                            --fond: #121214;
+                            --fond_card: #25252a;
+                        }
+
+                        .flex_column {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
+
+                        #ckeck {
+                            width: 20px;
+                            height: 20px;
+                            font-weight: bold;
+                        }
+
+                        .check_label {
+                            font-weight: bold;
+                        }
+
+                        .header, 
+                        #main_container, 
+                        .pub, 
+                        .footer {
+                            width: 100%;
+                        }
+
+                        .header {
+                            height: 10%;
+                            border-width: 0 0 1px 0;
+                            border-style: solid;
+                            border-color: var(--orange);
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            background-color: var(--fond_card);
+                        }
+
+                        .logo_header {
+                            height: 70%;
+                            margin-left: 5%;
+                        }
+
+                        .logo_vide {
+                            height: 10%;
+                            width: auto;
+                        }
+
+                        .text_header{
+                            color: var(--orange);
+                            font-weight: bold;
+                        }
+
+                        .menu {
+                            height: 70%;
+                            width: 15%;
+                            background-color: var(--fond);
+                            border-radius: 10%;
+                            margin-right: 5%;
+                            border: 1px solid white;
+                        }
+
+                        .menu img {
+                            height: 100%;
+                        }
+
+                        #main_container {
+                            height: 70%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            overflow-y: scroll;
+                        }
+
+                        .main_vide {
+                            height: 100%;
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-evenly;
+                            align-items: center;
+                            flex-direction: column;
+                        }
+
+                        .btn_main_vide {
+                            width: 60%;
+                            height: 10%;
+                            background-color: green;
+                            border: none;
+                            color: white;
+                            font-weight: bold;
+                            border-radius: 5%;
+                            font-size: large;
+                            
+                        }
+
+                        .text_main_vide {
+                            font-size: large;
+                        }
+
+                        #note {
+                            height: 100%;
+                        }
+
+                        .m_form label {
+                            font-size: large;
+                            font-weight: bold;
+                            margin-bottom: 0.5rem;
+                        }
+
+                        .form_container {
+                            display: flex; 
+                            align-items: center; 
+                            flex-direction: column; 
+                            justify-content: center; 
+                            height: auto;
+                            width: 100%;
+                            margin-top: 4rem;
+                            margin-bottom: 1rem;
+                        }
+
+                        .form {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: flex-start;
+                            height: auto;
+                            width: 100%;
+                            box-sizing: border-box;
+                            gap: 1rem;
+                        }
+
+                        .form div,
+                        .form input,
+                        .form textarea {
+                            width: 70%;
+                        }
+
+                        .form_container h3 {
+                            font-size: x-large;
+                            font-weight: bold;
+                            height: 10%;
+                        }
+
+
+                        #btn_submit {
+
+                            width: 70%;
+                            height: 50px;
+                            background-color: green;
+                            border: 1px solid var(--orange);
+                            color: white;
+                            font-weight: bold;
+                            border-radius: 5px;
+                            font-size: large;
+                        }
+
+                        #btn_picture {
+                            width: 70%;
+                            height: 50px;
+                            background-color: var(--fond_card);
+                            border: 1px solid var(--orange);
+                            color: white;
+                            font-weight: bold;
+                            border-radius: 5%;
+                            font-size: medium;
+                            margin-top: 5%;
+                            padding: 0 5% 0 5%
+                        }
+
+                        .div_check {
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-around;
+                            align-items: center;
+                        }
+
+                        .pub {
+                            height: 10%;
+                            border-width: 1px 0 1px 0;
+                            border-style: solid;
+                            border-color: var(--orange);
+
+                        }
+
+                        .footer {
+                            height: 10%;
+                            background-color: var(--fond_card);
+                        }

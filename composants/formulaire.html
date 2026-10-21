@@ -1,0 +1,52 @@
+<div class="form_container">
+    
+    
+    <h3>Formulaire</h3>
+    
+    
+    <form action="" method="post" id="formulaire" class="form">    
+
+        <!-- Name -->
+        <div class="flex_column m_form">
+            <label for="nom">Nom</label>
+            <input type="text" name="nom" id="nom" placeholder="Nom du stock">
+        </div>
+        
+        <!-- Quantity -->
+        <div class="flex_column m_form">
+            <label for="quantity">Quantité</label>
+            <input type="number" name="quantity" id="quantity" min="0">
+        </div>
+
+        <!-- Category -->
+        <div class="flex_column m_form">
+            <label for="category">Catégorie</label>
+            <input type="text" name="category" id="category" placeholder="categorie">
+        </div>
+
+        <!-- Note -->
+        <div class="flex_column m_form">
+            <label for="note">Note</label>
+            <textarea name="note" id="note" placeholder="Note"></textarea>
+        </div>
+
+        <!-- Picture -->
+        <div class="flex_column m_form">
+            <button type="button" id="btn_picture">Ajouter une Photo</button>
+        </div>
+
+        <!-- Ckeck -->
+        <div style="display: flex; flex-direction: row-reverse;" class="div_check">
+            <label for="ckeck" class="check_label">Ajouter un stock mini</label>
+            <input type="checkbox" name="ckeck" id="ckeck">
+        </div>
+
+        <!-- mini (si check true) -->
+        <div class="flex_column m_form">
+            <label for="mini">Stock Mini</label>
+            <input type="number" name="mini" id="mini" placeholder="Quantité du stock mini">
+        </div>
+
+        <button type="submit" id="btn_submit">Créer le stock</button>
+
+</div>
