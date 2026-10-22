@@ -8,3 +8,4 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('main_container').innerHTML = data;
     })
 });
+
