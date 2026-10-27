@@ -1,5 +1,9 @@
 {
   "appId": "com.Stow.app",
   "appName": "Stow",
-  "webDir": "www"
+  "webDir": "www",
+  "server": {
+    "url": "http://192.168.1.16:5173/",
+    "cleartext": true
+  }
 }

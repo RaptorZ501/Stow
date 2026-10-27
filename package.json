@@ -1,10 +1,9 @@
 {
   "name": "stow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Application d'inventaire simple, locale et rapide",
-  "main": "vite.config.js",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite",
     "build": "vite build"
   },
   "keywords": [],
