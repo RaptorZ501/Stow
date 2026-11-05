@@ -1,6 +1,6 @@
 import './gestion_btn.js';
 import './formulaire.js';
-
+import './recupereDB.js';
 
 document.addEventListener("DOMContentLoaded", () => {
 
