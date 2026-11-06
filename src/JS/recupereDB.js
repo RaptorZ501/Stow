@@ -32,12 +32,14 @@ export async function chargerCartes() {
     tousLesEnregistrements.forEach((item) => {
       // 2. On clone le contenu du template (true = clone tout l'intérieur)
       const clone = template.content.cloneNode(true);
-
+      if(!item.mini) {
+        console.log("il n'y a pas de mini");
+      }
       // 3. On va cibler les éléments à l'intérieur du clone pour y injecter les données
       clone.querySelector('.carte-img').src = item.imageUri || '';
       clone.querySelector('.carte-nom').textContent = item.nom || 'Sans titre';
       clone.querySelector('.carte-quantity').textContent = `Quantité : ${item.quantity || 0}`;
-      clone.querySelector('.carte-category').textContent = `Catégorie : ${item.category || 'Sans catégorie'}`;
+      // clone.querySelector('.carte-category').textContent = `Catégorie : ${item.category || 'Sans catégorie'}`;
       clone.querySelector('.carte-note').textContent = `Note : ${item.note || 'Sans note'}`;
       // 4. On ajoute le clone finalisé dans le conteneur de la page
       conteneur.appendChild(clone);
