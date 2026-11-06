@@ -1,10 +1,23 @@
 <div class="main">
 
-    <div>
+    <div class="search-container">
         <h3>Recherche</h3>
         <input type="text" id="searchInput" placeholder="Rechercher un stock...">
     </div>
+    <!-- Le template n'est pas affiché à l'écran, il sert juste de modèle -->
+    <template id="carte-template">
+        <div class="carte">
+            <img src="" alt="Photo" class="carte-img" />
+            <div class="carte-infos">
+                <h3 class="carte-nom"></h3>
+                <p class="carte-quantity"></p>
+                <p class="carte-category"></p>
+                <p class="carte-note"></p>
+            </div>
+        </div>
+    </template>
 
     <!-- C'est ici que les cartes vont s'afficher dynamiquement -->
-    <div id="listeCartes" class="cartes-container"></div>
+    <div id="listeCartes" class="cartes-container">
+    </div>
 </div>

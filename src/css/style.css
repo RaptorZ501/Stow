@@ -216,3 +216,34 @@
                             height: 10%;
                             background-color: var(--fond_card);
                         }
+
+                        /* search container et ces balise*/
+
+                        .search-container {
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+                            margin-bottom: 5rem;
+                        }
+
+
+                        /* class des elements de carte */
+
+                        .carte {
+                            width: 90vw;
+                            height: auto;
+                            background-color: var(--fond_card);
+                            border-radius: 10px;
+                            margin-bottom: 1rem;
+                            padding: 1rem;
+                            box-sizing: border-box;
+                        }
+
+                        .carte-img {
+                            width: 100px;
+                            height: 100px;
+                            object-fit: cover;
+                            border-radius: 4px;
+                        }

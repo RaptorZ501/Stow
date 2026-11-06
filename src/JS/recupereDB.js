@@ -1,21 +1,23 @@
-import { db } from '../db/db.js';
+import { db } from '../db/db.js'; // Ajuste le chemin selon où est ton db.js
 
-async function chargerCartes() {
+export async function chargerCartes() {
   try {
-
-    // 2. On cible le conteneur dans le HTML
+    // 1. On cible la div conteneur dans le HTML
     const conteneur = document.getElementById('listeCartes');
-    
-    console.log("Conteneur trouvé :", conteneur); // Vérification que le conteneur est bien trouvé
+
+    // 2. On récupère TOUTES les données de la table "formulaires"
+    const tousLesEnregistrements = await db.formulaires.toArray();
+    console.log("Enregistrements récupérés :", tousLesEnregistrements);
+
+
     // 🔒 Sécurité : Si la div n'existe pas sur cette page, on s'arrête net sans planter
     if (!conteneur) {
+      console.error("Conteneur non trouvé");
       return;
     }
 
-    // On récupère TOUS les enregistrements de la table "formulaires" sous forme de tableau JS
-    const tousLesEnregistrements = await db.formulaires.toArray();
-
-    conteneur.innerHTML = ''; // On le vide avant de le remplir pour éviter les doublons
+    // On vide le conteneur pour éviter les doublons si on recharge
+    conteneur.innerHTML = '';
 
     // 3. Si la base est vide, on affiche un petit message propre au lieu de planter
     if (tousLesEnregistrements.length === 0) {
@@ -23,29 +25,25 @@ async function chargerCartes() {
       return;
     }
 
-    // 3. On boucle sur chaque élément récupéré de la base
+    // 1. On va chercher le template dans le DOM
+    const template = document.getElementById('carte-template');
+
+    // 4. Sinon, on boucle sur chaque objet pour fabriquer les cartes
     tousLesEnregistrements.forEach((item) => {
-      // item contient ton objet JSON (tes inputs + ton imageUri)
-      
-      // On crée un élément HTML pour la carte
-      const carte = document.createElement('div');
-      carte.classList.add('carte'); // Pour le style CSS si tu veux
+      // 2. On clone le contenu du template (true = clone tout l'intérieur)
+      const clone = template.content.cloneNode(true);
 
-      // On injecte le contenu (titre, textes, et l'image grâce à l'URI Capacitor)
-      carte.innerHTML = `
-        <img src="${item.imageUri || ''}" alt="Photo" style="width: 100px; height: 100px; object-fit: cover;" />
-        <h3>${item.titre || 'Sans titre'}</h3>
-        <p>ID : ${item.id}</p>
-      `;
-
-      // On ajoute la carte dans le conteneur de la page
-      conteneur.appendChild(carte);
+      // 3. On va cibler les éléments à l'intérieur du clone pour y injecter les données
+      clone.querySelector('.carte-img').src = item.imageUri || '';
+      clone.querySelector('.carte-nom').textContent = item.nom || 'Sans titre';
+      clone.querySelector('.carte-quantity').textContent = `Quantité : ${item.quantity || 0}`;
+      clone.querySelector('.carte-category').textContent = `Catégorie : ${item.category || 'Sans catégorie'}`;
+      clone.querySelector('.carte-note').textContent = `Note : ${item.note || 'Sans note'}`;
+      // 4. On ajoute le clone finalisé dans le conteneur de la page
+      conteneur.appendChild(clone);
     });
 
   } catch (error) {
     console.error("Erreur lors du chargement des cartes :", error);
   }
 }
-
-// 4. Tu appelles cette fonction quand la page se charge (ou après un enregistrement réussi)
-window.addEventListener('DOMContentLoaded', chargerCartes);
