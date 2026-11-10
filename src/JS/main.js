@@ -23,6 +23,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         .then(data => {
           document.getElementById('main_container').innerHTML = data;
           chargerCartes(); // Appel de la fonction pour charger les cartes après l'insertion du HTML
+          
+
+
       })
     }
 });

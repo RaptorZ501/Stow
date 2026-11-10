@@ -38,9 +38,46 @@ export async function chargerCartes() {
       // 3. On va cibler les éléments à l'intérieur du clone pour y injecter les données
       clone.querySelector('.carte-img').src = item.imageUri || '';
       clone.querySelector('.carte-nom').textContent = item.nom || 'Sans titre';
-      clone.querySelector('.carte-quantity').textContent = `${item.quantity || 0}`;
-      // clone.querySelector('.carte-category').textContent = `Catégorie : ${item.category || 'Sans catégorie'}`;
-      clone.querySelector('.carte-note').textContent = `${item.note || 'Sans note'}`;
+          // --- GESTION DES BOUTONS + ET - EN DIRECT ---
+      const btnMoins = clone.querySelector('.btn-decrease');
+      const btnPlus = clone.querySelector('.btn-increase');
+      
+
+
+      // On affiche la quantité actuelle (supposons que ton champ s'appelle 'quantite')
+      const spanQuantite = clone.querySelector('.carte-quantity');
+      let quantiteActuelle = "Quantité :" + " " + (item.quantity || 0);
+      spanQuantite.textContent = quantiteActuelle;
+
+      console.log("Quantité actuelle pour l'item", item.id, ":", quantiteActuelle);
+  
+
+      // Bouton PLUS (+)
+      btnPlus.addEventListener('click', async () => {
+        quantiteActuelle++;
+        spanQuantite.textContent = quantiteActuelle; // Mise à jour visuelle immédiate
+        console.log("Nouvelle quantité :", quantiteActuelle);
+
+        // 🔥 Mise à jour dans la base IndexedDB via Dexie
+        await db.formulaires.update(item.id, { quantite: quantiteActuelle });
+      });
+
+      // Bouton MOINS (-)
+      btnMoins.addEventListener('click', async () => {
+        if (quantiteActuelle > 0) { // Évite les stocks négatifs
+          quantiteActuelle--;
+          spanQuantite.textContent = quantiteActuelle; // Mise à jour visuelle immédiate
+          console.log("Nouvelle quantité :", quantiteActuelle);
+
+          // 🔥 Mise à jour dans la base IndexedDB via Dexie
+          await db.formulaires.update(item.id, { quantite: quantiteActuelle });
+        }
+      });
+
+
+
+
+
       // 4. On ajoute le clone finalisé dans le conteneur de la page
       conteneur.appendChild(clone);
     });
