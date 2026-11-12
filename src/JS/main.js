@@ -1,5 +1,6 @@
 import './gestion_btn.js';
 import './formulaire.js';
+import './details.js';
 import { chargerCartes } from './recupereDB.js';
 import { db } from '../db/db.js';
 
@@ -24,8 +25,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           document.getElementById('main_container').innerHTML = data;
           chargerCartes(); // Appel de la fonction pour charger les cartes après l'insertion du HTML
           
-
-
       })
     }
 });

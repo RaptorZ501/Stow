@@ -1,4 +1,5 @@
 import { db } from '../db/db.js'; // Ajuste le chemin selon où est ton db.js
+import { initialiserPageDetails } from './details.js'; // Ajuste le chemin selon où est ton details.js
 
 export async function chargerCartes() {
   try {
@@ -8,6 +9,17 @@ export async function chargerCartes() {
     // 2. On récupère TOUTES les données de la table "formulaires"
     const tousLesEnregistrements = await db.formulaires.toArray();
     console.log("Enregistrements récupérés :", tousLesEnregistrements);
+
+    // function pour afficher la page détails
+    function afficherPageDetails() {
+      console.log("Affichage de la page détails pour l'ID :", sessionStorage.getItem('idProduitActif'));
+      fetch('../src/composants/details.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('main_container').innerHTML = data; 
+          initialiserPageDetails(); // Appel de la fonction pour initialiser la page détails après l'insertion du HTML
+      })
+    }
 
 
     // 🔒 Sécurité : Si la div n'existe pas sur cette page, on s'arrête net sans planter
@@ -46,38 +58,48 @@ export async function chargerCartes() {
 
       // On affiche la quantité actuelle (supposons que ton champ s'appelle 'quantite')
       const spanQuantite = clone.querySelector('.carte-quantity');
-      let quantiteActuelle = "Quantité :" + " " + (item.quantity || 0);
+      let quantity = Number(item.quantity || 0);
+      let quantiteActuelle = "Quantité : " + " " + quantity; // Valeur par défaut à 0 si non défini
       spanQuantite.textContent = quantiteActuelle;
 
-      console.log("Quantité actuelle pour l'item", item.id, ":", quantiteActuelle);
-  
+      // Dans ta boucle forEach où tu crées les cartes...
+            
+      const btnDetails = clone.querySelector('.btn-details');
+            
+      btnDetails.addEventListener('click', () => {
+        // 1. On sauvegarde l'ID du produit qu'on veut voir en détail
+        sessionStorage.setItem('idProduitActif', item.id);
+        console.log("ID du produit actif sauvegardé :", item.id);
+        
+        // 2. On lance la fonction qui va faire le fetch de ta page détails
+        // (Tu pourras créer cette fonction dans ton main.js par exemple)
+        afficherPageDetails(); 
+      });
+
 
       // Bouton PLUS (+)
       btnPlus.addEventListener('click', async () => {
-        quantiteActuelle++;
+        quantity++;
+        quantiteActuelle = "Quantité : " + " " + quantity; // Valeur par défaut à 0 si non défini
         spanQuantite.textContent = quantiteActuelle; // Mise à jour visuelle immédiate
         console.log("Nouvelle quantité :", quantiteActuelle);
-
+      
         // 🔥 Mise à jour dans la base IndexedDB via Dexie
-        await db.formulaires.update(item.id, { quantite: quantiteActuelle });
+        await db.formulaires.update(item.id, { quantity: quantity });
       });
 
       // Bouton MOINS (-)
       btnMoins.addEventListener('click', async () => {
-        if (quantiteActuelle > 0) { // Évite les stocks négatifs
-          quantiteActuelle--;
+        if (quantity > 0) { // Évite les stocks négatifs
+          quantity--;
+          quantiteActuelle = "Quantité : " + " " + quantity; // Valeur par défaut à 0 si non défini
           spanQuantite.textContent = quantiteActuelle; // Mise à jour visuelle immédiate
           console.log("Nouvelle quantité :", quantiteActuelle);
 
           // 🔥 Mise à jour dans la base IndexedDB via Dexie
-          await db.formulaires.update(item.id, { quantite: quantiteActuelle });
+          await db.formulaires.update(item.id, { quantity: quantity });
         }
       });
-
-
-
-
-
       // 4. On ajoute le clone finalisé dans le conteneur de la page
       conteneur.appendChild(clone);
     });

@@ -79,6 +79,7 @@
 
                         .menu img {
                             height: 100%;
+                            width: 100%;
                         }
 
                         #main_container {
@@ -249,9 +250,9 @@
                             flex-direction: column;
                             align-items: center;
                             justify-content: center;
-                            border: 1px solid var(--orange);
-                            border-radius: 5px;
-                            margin: 0
+                            border-width: 1px 1px 1px 0;
+                            border-style: solid;
+                            border-color: var(--orange);
                         }
 
                         .partie-sup {
@@ -262,6 +263,15 @@
                             flex-direction: row;
                             align-items: center;
                             justify-content: space-between;
+                        }
+
+                        .sup-droite {
+                            display: flex; 
+                            flex-direction: column; 
+                            align-items: center; 
+                            justify-content: center;
+                            width: 100%;
+                            border-left: 1px solid var(--orange);
                         }
 
                         .carte-quantity {
@@ -280,12 +290,20 @@
                         }
 
                         .btn-increase, .btn-decrease {
-                            width: 50%;
+                            width: calc(50% - 0.5px);
                             background-color: white;
-                            border: 1px solid var(--orange);
                             color: black;
-                            font-weight: bold;
-                            font-size: large;
+                            font-weight: 900;
+                            font-size: 1.7rem;
+                            border: none;
+                        }
+
+                        .btn-increase {
+                            border-left: 0.5px solid var(--orange);
+                        }
+
+                        .btn-decrease {
+                            border-right: 0.5px solid var(--orange);
                         }
 
                         .partie-inf{
@@ -334,7 +352,21 @@
                             border-radius: 15px 0 0 0;
                             margin : 0;
                             padding: 0;
-                            border-right: 1px solid var(--orange);
+                        }
+
+                        .carte-nom {
+                            font-size: large;
+                            font-weight: bold;
+                            padding: 0;
+                        }
+
+                        .search-input {
+                            width:90%;
+                            height: 2rem;
+                            border-radius: 5px;
+                            border: none;
+                            margin-bottom: 1rem;
+                            padding-left: 0.5rem;
                         }
 
                         .main {
